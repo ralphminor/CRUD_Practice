@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
     movie.increments('id').primary();
     movie.string('title');
     movie.string('genre');
-    movie.string('description', 500);
+    movie.string('description', 1000);
     movie.string('poster_url');
   })
 };
