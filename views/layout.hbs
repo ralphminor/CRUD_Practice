@@ -2,9 +2,23 @@
 <html>
   <head>
     <title>{{title}}</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <header>
+      <nav>
+        <div class="nav-wrapper white">
+          <a href="/"><img class="logo-img" src="/images/movdirlogo.png" alt="movdir-logo"></a>
+          <a href="/" class="brand-logo head-title blue-text text-darken-2">My Movie Director DB</a>
+        </div>
+      </nav>
+    </header>
     {{{body}}}
   </body>
 </html>

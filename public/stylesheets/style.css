@@ -1,8 +1,84 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 2em;
+  font: 1em; "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #A9A9A9;
 }
 
 a {
   color: #00B7FF;
+}
+
+.logo-img {
+  height: 5vh;
+  margin-top: .5em;
+  margin-left: .5em;
+}
+
+.head-title {
+  font-size: 3em !important;
+  padding-left: 0.2em !important;
+}
+
+/*Landing Page*/
+
+#landing {
+  height: 90vh;
+}
+
+.card-image img {
+  height: 60vh;
+}
+
+/*Books Page*/
+.nav-image img {
+  height: 10vh;
+}
+
+.navb {
+  padding-left: 0.5em;
+}
+
+.card-image.small img {
+  height: 32vh;
+}
+
+.nav-books {
+  background-color: LightGray;
+}
+
+i.navc, .navc{
+  height: 8vh;
+  align-content: center;
+  padding-top: 3vh;
+}
+
+/*Add Book*/
+.add-book img {
+  height: 10vh;
+}
+
+.vertical-text {
+  margin-right: 10em;
+	transform: rotate(-90deg);
+	transform-origin: left top 0;
+}
+
+.vertical-text {
+  margin-right: 10em;
+	transform: rotate(-90deg);
+	transform-origin: left top 0;
+}
+
+.nav-vert {
+  padding-top: 15vh;
+  padding-left: 2em;
+  min-height: 25vh;
+}
+
+/*input:invalid {
+  box-shadow: 0 0 5px 1px red;
+}*/
+
+input:focus:invalid {
+  outline: none;
 }
