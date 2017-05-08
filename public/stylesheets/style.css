@@ -29,7 +29,7 @@ a {
   height: 60vh;
 }
 
-/*Books Page*/
+/*Movies Page*/
 .nav-image img {
   height: 10vh;
 }
@@ -42,7 +42,7 @@ a {
   height: 32vh;
 }
 
-.nav-books {
+.nav-movies {
   background-color: LightGray;
 }
 
@@ -52,8 +52,8 @@ i.navc, .navc{
   padding-top: 3vh;
 }
 
-/*Add Book*/
-.add-book img {
+/*Add Movie*/
+.add-movie img {
   height: 10vh;
 }
 

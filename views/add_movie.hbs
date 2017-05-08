@@ -1,0 +1,89 @@
+<section id="nav-movies">
+    <div class="row">
+        <div class="col s1">
+            <div class="col s12">
+                <div>
+                    <div class="">
+                        <div class="card vertical">
+                            <div class="card-image add-movie nav-image">
+                                <a href="/directors"><img src="../images/director.jpg"></a>
+                            </div>
+                            <div class="nav-vert">
+                                <a href="/directors"><h5 class="blue-text navb vertical-text">Directors</h5></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 nav-vert">
+                <div>
+                    <div class="">
+                        <div class="card nav-movies vertical">
+                            <div class="card-image add-movie nav-image">
+                                <a href="/movies"><img src="../images/movies.jpg"></a>
+                            </div>
+                            <div class="nav-vert">
+                                <a href="/movies"><h5 class="blue-text navb vertical-text">Movies</h5></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 offset-s1">
+            <h1 class="center">Add A Movie</h1>
+            <div class="row">
+                <form class="col s12" action="/movies/add" method="post">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input name="title" id="title" type="text" class="validate" required>
+                            <label for="title">Title</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="year" id="year" type="text" class="validate" required>
+                            <label for="year">Year</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="genre" id="genre" type="text" class="validate" required>
+                            <label for="genre">Genre</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input name="poster_url" id="url" type="text" class="validate" required>
+                            <label for="url">Movie Poster Image URL</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea name="description" id="description" class="materialize-textarea"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <select name="dir_id" required>
+                          <option value="" disabled selected>Choose the director</option>
+                          {{#each directors}}
+                            <option value="{{id}}">{{full}}</option>
+                          {{/each}}
+                        </select>
+                        <label>Director</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <button class="col s12 btn waves-effect blue" type="submit">Add Movie</button>
+                    </div>
+                </form>
+                {{#if message}}
+                  <h4 class="red-text center">{{message}}</h4>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+</script>

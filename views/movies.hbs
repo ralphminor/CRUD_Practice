@@ -1,0 +1,69 @@
+<section id="nav-movies">
+  <div class="row">
+    <div class="col s2">
+      <div class="col s12">
+        <div class="card horizontal">
+          <div class="card-image nav-image">
+            <a href="/directors"><img src="images/director.jpg"></a>
+          </div>
+          <div>
+            <a href="/directors"><h5 class="blue-text navb">Directors</h5></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col s2">
+      <div class="col s12">
+        <div class="card horizontal nav-movies">
+          <div class="card-image nav-image">
+            <a href="/movies"><img src="images/movies.jpg"></a>
+          </div>
+          <div>
+            <a href="/movies"><h5 class="blue-text navb">Movies</h5></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col s2 offset-s2">
+      <div class="col s12">
+        <div class="card horizontal">
+          <div class="card-image nav-image">
+            <i class="material-icons navc">library_add</i>
+          </div>
+          <div>
+            <a href="/movies/new"><h5 class="blue-text navc">Add A Movie!</h5></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{#if movies}}
+    <div class="row">
+        {{#each movies}}
+            <div class="col s8 offset-s2">
+                <div class="row">
+                    <h4 class="header"></h4>
+                    <div class="card horizontal">
+                        <div class="card-image small">
+                            <img src= {{poster_url}}>
+                        </div>
+                        <div class="card-stacked">
+                            <div class="card-content row">
+                                <h5 class="col s8">{{title}}</h5>
+                                <a href="/movies/delete/{{id}}"><h6 class="col s2 align-right">Delete <i class="material-icons">delete</i></h5></a>
+                                <a href="/movies/edit/{{id}}"><h6 class="col s2 align-right">Edit <i class="material-icons">mode_edit</i></h6></a>
+                                <h6 class="col s12">Director: {{director}}</h6>
+                                <h6 class="col s12">Genre: {{genre}}</h6>
+                                <p class="col s12">{{description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{else}}
+    <h4>Sorry, no movies!</h4>
+{{/if}}
