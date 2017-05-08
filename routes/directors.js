@@ -14,5 +14,27 @@ router
         directors: directors })
       }, next)
     })
+  .get('/new', (req, res) => {
+      res.render('add_director');
+    })
+  .post('/add', (req, res, next) => {
+      if (!req.body.biography) {
+        res.render('add_director', {message: "Please complete all fields."});
+      }
+
+      let directorToInsert = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        portrait_url: req.body.portrait_url,
+        biography: req.body.biography
+      };
+
+      db('director')
+      .insert(directorToInsert)
+      .then(() => {
+        res.redirect('/directors');
+      }, next)
+  })
+
 
 module.exports = router;
