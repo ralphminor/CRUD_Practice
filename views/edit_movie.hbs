@@ -40,20 +40,24 @@
                             <input name="title" value="{{title}}" id="title" type="text" class="validate" required>
                             <label for="title">Title</label>
                         </div>
-                        <div class="input-field col s6">
+                        <div class="input-field col s3">
+                            <input name="year" value="{{year}}" id="year" type="text" class="validate" required>
+                            <label for="year">Year</label>
+                        </div>
+                        <div class="input-field col s3">
                             <input name="genre" value="{{genre}}" id="genre" type="text" class="validate" required>
                             <label for="genre">Genre</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input value="{{poster_url}}" name="cover_url" id="url" type="text" class="validate" required>
+                            <input value="{{poster_url}}" name="poster_url" id="url" type="text" class="validate" required>
                             <label for="url">Movie Poster Image URL</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <textarea value="{{description}}" name="description" id="description" class="materialize-textarea"></textarea>
+                            <textarea name="description" id="description" class="materialize-textarea">{{description}}</textarea>
                             <label for="description">Description</label>
                         </div>
                     </div>
@@ -77,6 +81,6 @@
 </section>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('select').material_select();
+      $('select').material_select();
     });
 </script>
