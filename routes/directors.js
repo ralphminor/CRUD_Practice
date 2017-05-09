@@ -82,6 +82,29 @@ router
         })
       }, next)
   })
+  .get('/edit/:id', (req, res, next) => {
+      db('director')
+      .where("director.id", '=', req.params.id)
+      .then((director) => {
+        res.render('edit_director', {
+          directors: director })
+        }, next)
+      })
+  .put('/edit/:id', (req, res, next) => {
+      const { id } = req.params;
+      let directorToInsert = {
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        biography: req.body.biography,
+        portrait_url: req.body.portrait_url
+      };
+      db('director')
+      .update(directorToInsert)
+      .where('id', id)
+      .then(() => {
+        res.redirect('/directors');
+      }, next)
+  })
 
 
 module.exports = router;

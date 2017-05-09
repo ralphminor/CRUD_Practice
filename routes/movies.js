@@ -86,12 +86,8 @@ router
       console.log(req.params.id);
       db('movie')
       .where("movie.id", '=', req.params.id)
-      .innerJoin("movie_director", function() {
-        this.on('movie_director.movie_id', '=', 'movie.id')
-      })
-      .innerJoin('director', function() {
-        this.on('director.id', '=', 'movie_director.director_id')
-      })
+      .innerJoin('movie_director', 'movie_director.movie_id', '=', 'movie.id')
+      .innerJoin('director', 'director.id', '=', 'movie_director.director_id')
       .then((movies) => {
         let movies_with_directors = assemble_directors(movies);
         res.render('edit_movie', {

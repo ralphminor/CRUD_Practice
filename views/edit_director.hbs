@@ -1,0 +1,76 @@
+<section id="nav-movies">
+    <div class="row">
+        <div class="col s1">
+            <div class="col s12">
+                <div>
+                    <div class="">
+                        <div class="card vertical nav-movies">
+                            <div class="card-image add-movie nav-image">
+                                <a href="/directors"><img src="/images/director.jpg"></a>
+                            </div>
+                            <div class="nav-vert">
+                                <a href="/directors"><h5 class="blue-text navb vertical-text">Directors</h5></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 nav-vert">
+                <div>
+                    <div class="">
+                        <div class="card vertical">
+                            <div class="card-image add-movie nav-image">
+                                <a href="/movies"><img src="/images/movies.jpg"></a>
+                            </div>
+                            <div class="nav-vert">
+                                <a href="/movies"><h5 class="blue-text navb vertical-text">Movies</h5></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{#each directors}}
+        <div class="col s6 offset-s1">
+            <h1 class="center">Edit Director</h1>
+            <div class="row">
+                <form class="col s12" action="/directors/edit/{{id}}?_method=PUT" method="post">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input name="first_name" value="{{first_name}}" id="first_name" type="text" class="validate" required>
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="last_name" value="{{last_name}}" id="last_name" type="text" class="validate" required>
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input value="{{portrait_url}}" name="portrait_url" id="url" type="text" class="validate" required>
+                            <label for="url">Director Portrait Image URL</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea name="biography" id="biography" class="materialize-textarea">{{biography}}</textarea>
+                            <label for="biography">Biography</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <button class="col s12 btn waves-effect blue" type="submit">Submit Edits</button>
+                    </div>
+                </form>
+                {{#if message}}
+                  <h4 class="red-text center">{{message}}</h4>
+                {{/if}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</section>
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('select').material_select();
+    });
+</script>
