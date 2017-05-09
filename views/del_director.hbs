@@ -1,0 +1,63 @@
+<section id="nav-movies">
+  <div class="row">
+    <div class="col s2">
+      <div class="col s12">
+        <div class="card horizontal nav-movies">
+          <div class="card-image nav-image">
+            <a href="/directors"><img src="/images/director.jpg"></a>
+          </div>
+          <div>
+            <a href="/directors"><h5 class="blue-text navb">Directors</h5></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col s2">
+      <div class="col s12">
+        <div class="card horizontal">
+          <div class="card-image nav-image">
+            <a href="/movies"><img src="/images/movies.jpg"></a>
+          </div>
+          <div>
+            <a href="/movies"><h5 class="blue-text navb">Movies</h5></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{#if directors}}
+    <div class="row">
+    {{#each directors}}
+        <div class="col s8 offset-s2">
+            <div class="row">
+                <h4 class="header"></h4>
+                <div class="card horizontal">
+                    <div class="card-image small">
+                        <img src= {{portrait_url}}>
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content row">
+                            <h4 class="col s6">{{first_name}}</h4>
+                            <h4 class="col s6">{{last_name}}</h4>
+                            <h6 class="col s12">{{biography}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <form action="/directors/delete/{{id}}" method="post">
+          <div class="row">
+              <button class="col s8 offset-s2 btn waves-effect blue" type="submit">Delete Director</button>
+          </div>
+        </form>
+      </div>
+    {{/each}}
+    </div>
+{{else}}
+    <h4>Sorry, no Directors!</h4>
+{{/if}}

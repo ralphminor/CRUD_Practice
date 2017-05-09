@@ -8,12 +8,9 @@ router
   .use(bodyParser.urlencoded({ extended: false }))
   .get('/', (req, res, next) => {
     db('movie')
-    .innerJoin("movie_director", function() {
-      this.on('movie_director.movie_id', '=', 'movie.id')
-    })
-    .innerJoin('director', function() {
-      this.on('director.id', '=', 'movie_director.director_id')
-    })
+    .innerJoin('movie_director', 'movie_director.movie_id', '=', 'movie.id')
+    .innerJoin('director', 'director.id', '=', 'movie_director.director_id')
+    .orderBy('title', 'asc')
     .then((movies) => {
       let movies_with_directors = assemble_directors(movies);
       res.render('movies', {
@@ -62,12 +59,8 @@ router
       console.log(req.params.id);
       db('movie')
       .where("movie.id", '=', req.params.id)
-      .innerJoin("movie_director", function() {
-        this.on('movie_director.movie_id', '=', 'movie.id')
-      })
-      .innerJoin('director', function() {
-        this.on('director.id', '=', 'movie_director.director_id')
-      })
+      .innerJoin('movie_director', 'movie_director.movie_id', '=', 'movie.id')
+      .innerJoin('director', 'director.id', '=', 'movie_director.director_id')
       .then((movies) => {
         let movies_with_directors = assemble_directors(movies);
         res.render('del_movie', {
@@ -138,6 +131,7 @@ module.exports = router;
 
 
 function assemble_directors(movies) {
+  console.log('Movies = ',movies);
   // Assemble first_name + last_name into just director.
   var newMovies = [];
   var moviesWithDirectors = [];
