@@ -131,7 +131,6 @@ module.exports = router;
 
 
 function assemble_directors(movies) {
-  console.log('Movies = ',movies);
   // Assemble first_name + last_name into just director.
   var newMovies = [];
   var moviesWithDirectors = [];

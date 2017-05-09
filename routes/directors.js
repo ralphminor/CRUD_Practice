@@ -8,8 +8,8 @@ router
   .use(bodyParser.urlencoded({ extended: false }))
   .get('/', (req, res, next) => {
     db('director')
-    .innerJoin('movie_director', 'director_id', '=', 'director.id')
-    .innerJoin('movie', 'movie.id', '=', 'movie_director.movie_id')
+    .leftJoin('movie_director', 'director_id', '=', 'director.id')
+    .leftJoin('movie', 'movie.id', '=', 'movie_director.movie_id')
     .orderBy('last_name', 'asc')
     .then((directors) => {
       let directors_with_movies = assemble_movies(directors);
@@ -39,8 +39,6 @@ router
       }, next)
   })
   .get('/delete/:id', (req, res, next) => {
-      console.log('in directors delete');
-      console.log(req.params.id);
       db('director')
       .where("director.id", '=', req.params.id)
       .then((directors) => {
@@ -50,25 +48,46 @@ router
       })
   .post('/delete/:id', (req, res, next) => {
       const { id } = req.params;
+      console.log('id before delete = ', id);
       db("movie_director")
-      .where("movie_director.director_id", "=", id)
-      .delete()
-      .then(() => {
-        db('movie')
-        .where("id", id)
-        .delete()
+      .where('movie_director.director_id', '=', id)
+      .then((recs) => {
+        console.log('recs = ', recs);
+        let movs_to_delete = [];
+        let dirs_to_delete = [];
+        recs.forEach((e) => {
+          movs_to_delete.push(e.movie_id);
+          dirs_to_delete.push(e.director_id);
+        })
+        console.log('movs_to_delete = ', movs_to_delete);
+        console.log('dirs_to_delete = ', dirs_to_delete);
+        db('movie_director')
+        .where('movie_director.director_id', '=', id)
+        .del()
         .then(() => {
-          res.redirect('/movies');
-        }, next)
-      })
-    })
+          console.log('step 1 - deleted from movie_director')
+          db('director')
+          .where('director.id', '=', id)
+          .del()
+          .then(() => {
+            console.log('step 2 = deleted from director')
+            db('movie')
+            .whereIn('movie.id', movs_to_delete)
+            .del()
+            .then(() => {
+              console.log('step 3 = deleted from movie')
+              res.redirect('/directors');
+            })
+          })
+        })
+      }, next)
+  })
 
 
 module.exports = router;
 
 
 function assemble_movies(directors) {
-  console.log(`Directors = ${directors}`);
   var newDirectors = [];
   var directorsWithMovies = [];
   directors.forEach((element) => {
@@ -102,6 +121,5 @@ function assemble_movies(directors) {
       finalDirectors.push(element);
     }
   })
-  console.log(finalDirectors);
   return finalDirectors;
 }
