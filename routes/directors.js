@@ -8,13 +8,10 @@ router
   .use(bodyParser.urlencoded({ extended: false }))
   .get('/', (req, res, next) => {
     db('director')
-    .leftJoin('movie_director', 'director_id', '=', 'director.id')
-    .leftJoin('movie', 'movie.id', '=', 'movie_director.movie_id')
     .orderBy('last_name', 'asc')
     .then((directors) => {
-      let directors_with_movies = assemble_movies(directors);
-      res.render('directors', {
-        directors: directors_with_movies })
+      console.log('directors = ', directors)
+      res.render('directors', {directors: directors})
       }, next)
     })
   .get('/new', (req, res) => {
